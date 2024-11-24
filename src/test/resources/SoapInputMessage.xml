@@ -1,0 +1,18 @@
+<soapenv:Envelope
+        xmlns:get="http://www.odido.nl/eai/s3pp/xsd/messages/ServiceProvider/GetServiceProviderServiceListRequest_1.xsd"
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <get:GetServiceProviderServiceListRequest>
+            <header>
+                <messageID>kjahahhajkdkjhda</messageID>
+                <partnerID>pokemons</partnerID>
+                <systemID>dummy</systemID>
+                <timestamp>2020-01-01T00:00:00Z</timestamp>
+                <user>magikarp</user>
+            </header>
+            <body>
+                <serviceProviderName>POKE</serviceProviderName>
+            </body>
+        </get:GetServiceProviderServiceListRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
