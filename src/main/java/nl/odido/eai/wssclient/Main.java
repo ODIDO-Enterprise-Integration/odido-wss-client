@@ -18,12 +18,9 @@ public class Main extends Thread {
 
     // The provided keystore file contains a test key-certificate pair. If you want to use the proxy functionality,
     // use a keystore with a private/public key pair, where the certificate is whitelisted on Odido side
-//    static final String keystoreFile = "./src/test/resources/wss_keystore.jks";
-//    static final String keystorePassword = "secret";
-//    static final String keystoreAlias = "wsscert";
-    static final String keystoreFile = "C:/Projects/tls/client1_keystore.jks";
-    static final String keystorePassword = "tibco123";
-    static final String keystoreAlias = "client1-wss";
+    static final String keystoreFile = "./src/test/resources/wss_keystore.jks";
+    static final String keystorePassword = "secret";
+    static final String keystoreAlias = "wsscert";
 
     // the provided truststore file contains Odido's test WSS certificate and the test WSS certificate from the keystore
     static final String truststoreFile = "./src/test/resources/wss_truststore.jks";

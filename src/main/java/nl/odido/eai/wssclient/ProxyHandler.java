@@ -125,7 +125,6 @@ public class ProxyHandler extends HandlerWrapper {
             if (copyHeader(h)) {
                 String v = servletRequest.getHeader(h);
                 clientRequest.addHeader(new HttpField(h, v));
-                System.out.println("###### " + h + ": " + v);
             }
         }
 
@@ -213,7 +212,7 @@ public class ProxyHandler extends HandlerWrapper {
                 .replace(">", "&gt;");
 
         String body = SOAP_FAULT.replace("%%FAULTSTRING%%", faultstring);
-        System.out.println("Error response: " + status + "\n" + body);
+        log.info("Error response: " + status + "\n" + body);
         servletResponse.reset();
         servletResponse.setStatus(status);
         servletResponse.setContentType("text/xml; charset=utf-8");
