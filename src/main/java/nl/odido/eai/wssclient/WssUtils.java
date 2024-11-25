@@ -39,7 +39,7 @@ public class WssUtils {
     /**
      * Some of the most common non-standard OIDs used in certificate subjects
      */
-    private final static Map<String, String> customOidMap = Map.of(
+    final static Map<String, String> customOidMap = Map.of(
             "1.2.840.113549.1.9.1", "emailAddress",
             "2.5.4.5", "serialNumber",
             "2.5.4.9", "streetAddress",
@@ -66,6 +66,17 @@ public class WssUtils {
         this.securityEngine = securityEngine;
     }
 
+    /**
+     * Create a new WssUtils instance, to sign SOAP messages and verify signatures
+     * @param keystoreFile The keystore file, where the signing key-certificate pair is
+     * @param keystorePassword Password of the keystore file. Key password must be the same
+     * @param keystoreAlias Alias of the signing key
+     * @param truststoreFile The truststore file, where the trusted certificates are
+     * @param truststorePassword Password of the truststore file
+     * @param ignoredBSPRuleNames List of BSP rules that can be ignored at the signature validation
+     * @return A new WssUtils instance
+     * @throws WSSecurityException
+     */
     public static WssUtils newWssUtils(@Nonnull String keystoreFile,
                          @Nonnull String keystorePassword,
                          @Nonnull String keystoreAlias,
@@ -125,6 +136,17 @@ public class WssUtils {
         return CryptoFactory.getInstance(props);
     }
 
+    /**
+     * Verify signature of a SOAP message
+     * @param message Signed SOAP message
+     * @return Verification result
+     * @throws SAXException
+     * @throws IOException
+     * @throws WSSecurityException
+     * @throws XPathExpressionException
+     * @throws IllegalArgumentException
+     * @throws TransformerException
+     */
     public WSHandlerResult verifyWSS(String message) throws SAXException, IOException, WSSecurityException, XPathExpressionException, IllegalArgumentException, TransformerException {
         Document doc = XmlTools.parseXML(message);
         XPath xpath = XmlTools.newXPath();
@@ -176,6 +198,15 @@ public class WssUtils {
         }
     }
 
+    /**
+     * Sign a SOAP message
+     * @param message SOAP message as string
+     * @return Signed SOAP message as string
+     * @throws IOException
+     * @throws SAXException
+     * @throws WSSecurityException
+     * @throws TransformerException
+     */
     public String signWSS(String message) throws IOException, SAXException, WSSecurityException, TransformerException {
 
         Document doc = XmlTools.parseXML(message);
