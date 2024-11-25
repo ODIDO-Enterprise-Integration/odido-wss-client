@@ -12,11 +12,22 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.util.thread.ExecutorThreadPool;
 
+/**
+ * A simple embedded Jetty HTTP server with a request handler
+ * Not for production use!
+ */
 public class ProxyServer {
 
     static Logger log = Logger.getLogger(ProxyServer.class.getName());
     final Server server;
 
+    /**
+     * Create a plain HTTP server
+     * @param handler Handle all requests received by the server
+     * @param idleTimeoutSeconds Time before idle server threads are removed
+     * @param host IP address or host name to set up the listener on
+     * @param port TCP port to listen on
+     */
     public ProxyServer(Handler handler, long idleTimeoutSeconds, String host, int port) {
         server = createServer(handler, idleTimeoutSeconds, host, port);
     }
