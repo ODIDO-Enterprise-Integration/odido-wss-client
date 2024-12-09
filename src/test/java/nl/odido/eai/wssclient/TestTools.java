@@ -10,10 +10,11 @@ public class TestTools {
     private final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
     String readResourceFile(String fileName) throws IOException {
-        var res = classloader.getResourceAsStream(fileName);
-        if (res == null)
-            throw new FileNotFoundException(fileName);
-        return new String(res.readAllBytes());
+        try(var res = classloader.getResourceAsStream(fileName)) {
+            if (res == null)
+                throw new FileNotFoundException(fileName);
+            return new String(res.readAllBytes());
+        }
     }
 
     XPath newXpath() {

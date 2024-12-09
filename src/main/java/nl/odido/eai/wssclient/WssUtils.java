@@ -30,7 +30,6 @@ import org.apache.wss4j.dom.handler.WSHandlerResult;
 import org.apache.wss4j.dom.message.WSSecHeader;
 import org.apache.wss4j.dom.message.WSSecSignature;
 import org.apache.wss4j.dom.message.WSSecTimestamp;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -46,7 +45,6 @@ public class WssUtils {
             "2.5.4.15", "businessCategory"
     );
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(WssUtils.class);
     private final String signAlias;
     private final String signPassword;
     private final Crypto signer;
@@ -145,9 +143,8 @@ public class WssUtils {
      * @throws WSSecurityException
      * @throws XPathExpressionException
      * @throws IllegalArgumentException
-     * @throws TransformerException
      */
-    public WSHandlerResult verifyWSS(String message) throws SAXException, IOException, WSSecurityException, XPathExpressionException, IllegalArgumentException, TransformerException {
+    public WSHandlerResult verifyWSS(String message) throws SAXException, IOException, WSSecurityException, XPathExpressionException, IllegalArgumentException {
         Document doc = XmlTools.parseXML(message);
         XPath xpath = XmlTools.newXPath();
         boolean fault = (xpath.evaluate("/SOAP-ENV:Envelope/SOAP-ENV:Body/SOAP-ENV:Fault", doc, XPathConstants.NODE) != null);
